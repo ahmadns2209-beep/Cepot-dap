@@ -1,0 +1,254 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<title>Dapin By A.Z</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{font-family:Arial; margin:0; background:#1e1b4b; padding:15px}
+.header{background:linear-gradient(135deg,#7c3aed,#4f46e5); color:white; padding:35px 20px; text-align:center; border-radius:25px; box-shadow:0 5px 20px rgba(0,0,0,0.3)}
+.header h1{margin:0; font-size:25px; font-weight:800; line-height:1.1}
+.header p{font-size:15px; opacity:0.9; margin:15px 0 20px; line-height:1.4}
+.badge{background:rgba(255,255,255,0.2); border:1px solid rgba(255,255,255,0.3); color:#a7f3d0; padding:10px 20px; border-radius:30px; display:inline-block; font-weight:bold; font-size:16px}
+.btn-wa{background:#25D366; color:white; padding:16px; display:block; text-align:center; text-decoration:none; border-radius:15px; font-weight:bold; margin:20px 0; font-size:17px}
+.card{background:white; padding:20px; border-radius:20px; margin-top:15px}
+.harga{color:#7c3aed; font-weight:bold; font-size:20px}
+input,select{width:100%; padding:13px; margin:8px 0; border:1px solid #ddd; border-radius:12px; box-sizing:border-box; font-size:15px}
+.footer{text-align:center; color:white; opacity:0.7; padding:20px; font-size:13px}
+
+<title>Dapin By A.Z</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family:Arial;sans-serif;
+      background-color: #f4f;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background:yellow;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    h2, h3 {
+      margin-top: 0;
+      color: red;
+    }
+    .quick-buttons {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .quick-buttons button {
+      padding: 8px 12px;
+      border: 1px solid #2563eb;
+      background: yellowgreen;
+      color: #2563eb;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .quick-buttons button:hover {
+      background: #2563eb;
+      color: red;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid red;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    .summary-box {
+      background: red;
+      padding: 15px;
+      border-left: 4px solid #2563eb;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+    .summary-box p {
+      margin: 6px 0;
+      display: flex;
+      justify-content: space-between;
+    }
+    .notice {
+      background: red;
+      border: 1px solid #fde047;
+      padding: 12px;
+      border-radius: 4px;
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+    .submit-btn {
+      width: 100%;
+      padding: 12px;
+      background: #16a34a;
+      color: yellow;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .submit-btn:hover {
+      background: #15803d;
+    }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Dapin By A.Z</h1>
+  <p>Layanan Pengajuan Pinjaman Cepat, Aman & Terpercaya</p>
+  <span class="badge">🟢 Admin Online (Buka s/d 22:00)</span>
+  <p></p>
+  <p></p>
+  <form id="loanForm">
+    <div class="form-group">
+      <label>Nominal Pinjaman (Rp)</label>
+      <div class="quick-buttons">
+        <button type="button" onclick="setAmount(200000)">200rb</button>
+        <button type="button" onclick="setAmount(500000)">500rb</button>
+        <button type="button" onclick="setAmount(1000000)">1 Juta</button>
+        <button type="button" onclick="setAmount(1500000)">1,5 Juta</button>
+        <button type="button" onclick="setAmount(2000000)">2 Juta</button>
+      </div>
+      <input type="number" id="amount" placeholder="Rp Contoh: 500000" min="100000" required oninput="calculateLoan()">
+    </div>
+
+    <div class="form-group">
+      <label for="tenor">Pilih Tenor (Durasi)</label>
+      <select id="tenor" required onchange="calculateLoan()">
+        <option value="">-- Pilih Tenor Pinjaman --</option>
+        <option value="70">7 Hari</option>
+        <option value="100">14 Hari</option>
+        <option value="150">30 Hari</option>
+      </select>
+    </div>
+
+    <div class="summary-box">
+      <p><span>Estimasi Bunga:</span> <strong id="interestDisplay">Rp 0</strong></p>
+      <p><span>Biaya Admin/Materai:</span> <strong>Rp 12.000</strong></p>
+      <p><span>Total Harus Dibayar:</span> <strong id="totalDisplay">Rp 0</strong></p>
+      <p><span>Estimasi Jatuh Tempo:</span> <strong id="dueDateDisplay">-</strong></p>
+    </div>
+
+    <div class="notice">
+      <strong>⚠️ Perhatian Penting:</strong><br>
+      Keterlambatan pelunasan melewati tanggal jatuh tempo akan dikenakan denda sesuai ketentuan yang berlaku. Harap pinjam secara bijak.
+    </div>
+
+    <h3>1. Data Diri Pemohon</h3>
+    <div class="form-group">
+      <label for="fullName">Nama Lengkap (Sesuai KTP)</label>
+      <input type="text" id="fullName" placeholder="Nama lengkap Anda" required>
+    </div>
+    <div class="form-group">
+      <label for="phone">No. Telepon / WhatsApp Aktif</label>
+      <input type="tel" id="phone" placeholder="Contoh: 628123456789" pattern="[0-9]+" required>
+    </div>
+    <div class="form-group">
+      <label for="nik">Nomor KTP / NIK (16 Digit)</label>
+      <input type="text" id="nik" placeholder="16 digit nomor KTP" maxlength="16" pattern="[0-9]{16}" required>
+    </div>
+    <div class="form-group">
+      <label for="job">Pekerjaan</label>
+      <input type="text" id="job" placeholder="Contoh: Karyawan Swasta / Wirausaha" required>
+    </div>
+    <div class="form-group">
+      <label for="address">Alamat Domisili Sekarang</label>
+      <textarea id="address" rows="2" placeholder="Nama jalan, RT/RW, Kecamatan, Kota" required></textarea>
+    </div>
+
+    <h3>2. Tujuan Rekening Pencairan</h3>
+    <div class="form-group">
+      <label for="bank">Pilih Bank / E-Wallet</label>
+      <select id="bank" required>
+        <option value="">-- Pilih Bank / E-Wallet --</option>
+        <option value="BCA">BCA</option>
+        <option value="BRI">BRI</option>
+        <option value="BNI">BNI</option>
+        <option value="Mandiri">Mandiri</option>
+        <option value="GoPay">GoPay</option>
+        <option value="OVO">OVO</option>
+        <option value="DANA">DANA</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="accountNumber">Nomor Rekening / No. Akun</label>
+      <input type="text" id="accountNumber" placeholder="Masukkan nomor rekening/akun" pattern="[0-9]+" required>
+    </div>
+
+    <h3>3. Kontak Darurat</h3>
+    <div class="form-group">
+      <label for="emergencyName">Nama Kontak Darurat</label>
+      <input type="text" id="emergencyName" placeholder="Nama kerabat/keluarga" required>
+    </div>
+    <div class="form-group">
+      <label for="emergencyRelation">Hubungan</label>
+      <input type="text" id="emergencyRelation" placeholder="Contoh: Orang Tua / Saudara / Pasangan" required>
+    </div>
+    <div class="form-group">
+      <label for="emergencyPhone">No. HP Kontak Darurat</label>
+      <input type="tel" id="emergencyPhone" placeholder="Contoh: 08987654321" pattern="[0-9]+" required>
+    </div>
+
+    <button<a href="https://wa.me/6289501372683?text=Halo%20min,%20saya%20mau%20order%20jasa%20cleaning.%20Boleh%20info%20harga%20dan%20jadwalnya?" target="_blank" style="display:block; background:#22c55e; color:yellow; text-align:center; padding:15px; border-radius:12px; font-weight:bold; text-decoration:none; font-size:18px;">
+Kirim Pengajuan
+</a></button>
+  </form>
+</div>
+
+<script>
+  function setAmount(val) {
+    document.getElementById('amount').value = val;
+    calculateLoan();
+  }
+
+  function formatRupiah(num) {
+    return 'Rp ' + num.toLocaleString('id-ID');
+  }
+
+  function calculateLoan() {
+    const amount = parseFloat(document.getElementById('amount').value) || 0;
+    const tenor = parseInt(document.getElementById('tenor').value) || 0;
+    const adminFee = amount > 0 ? 12000 : 0;
+    
+    // Simulasi bunga 0.3% per hari
+    const interest = Math.round(amount * 0.003 * tenor);
+    const total = amount + interest + adminFee;
+
+    document.getElementById('interestDisplay').innerText = formatRupiah(interest);
+    document.getElementById('totalDisplay').innerText = amount > 0 && tenor > 0 ? formatRupiah(total) : 'Rp 0';
+
+    if (tenor > 0) {
+      const dueDate = new Date();
+      dueDate.setDate(dueDate.getDate() + tenor);
+      document.getElementById('dueDateDisplay').innerText = dueDate.toLocaleDateString('id-ID', {
+        day: 'numeric', month: 'long', year: 'numeric'
+      });
+    } else {
+      document.getElementById('dueDateDisplay').innerText = '-';
+    }
+  }
+
+  document.getElementById('loanForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('Simulasi pengajuan berhasil divalidasi!');
+  });
+</script>
+
+</body>
+</html>
