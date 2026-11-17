@@ -1,254 +1,174 @@
- <!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="id">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dapin By A.Z</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-body{font-family:Arial; margin:0; background:#1e1b4b; padding:15px}
-.header{background:linear-gradient(135deg,#7c3aed,#4f46e5); color:white; padding:35px 20px; text-align:center; border-radius:25px; box-shadow:0 5px 20px rgba(0,0,0,0.3)}
-.header h1{margin:0; font-size:25px; font-weight:800; line-height:1.1}
-.header p{font-size:15px; opacity:0.9; margin:15px 0 20px; line-height:1.4}
-.badge{background:rgba(255,255,255,0.2); border:1px solid rgba(255,255,255,0.3); color:#a7f3d0; padding:10px 20px; border-radius:30px; display:inline-block; font-weight:bold; font-size:16px}
-.btn-wa{background:#25D366; color:white; padding:16px; display:block; text-align:center; text-decoration:none; border-radius:15px; font-weight:bold; margin:20px 0; font-size:17px}
-.card{background:white; padding:20px; border-radius:20px; margin-top:15px}
-.harga{color:#7c3aed; font-weight:bold; font-size:20px}
-input,select{width:100%; padding:13px; margin:8px 0; border:1px solid #ddd; border-radius:12px; box-sizing:border-box; font-size:15px}
-.footer{text-align:center; color:white; opacity:0.7; padding:20px; font-size:13px}
-
-<title>Dapin By A.Z</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      font-family:Arial;sans-serif;
-      background-color: #f4f;
-      margin: 0;
-      padding: 20px;
-      color: #333;
-    }
-    .container {
-      max-width: 500px;
-      margin: auto;
-      background:yellow;
-      padding: 25px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-    h2, h3 {
-      margin-top: 0;
-      color: red;
-    }
-    .quick-buttons {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 12px;
-    }
-    .quick-buttons button {
-      padding: 8px 12px;
-      border: 1px solid #2563eb;
-      background: yellowgreen;
-      color: #2563eb;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .quick-buttons button:hover {
-      background: #2563eb;
-      color: red;
-    }
-    .form-group {
-      margin-bottom: 15px;
-    }
-    label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 5px;
-      font-size: 14px;
-    }
-    input, select, textarea {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid red;
-      border-radius: 4px;
-      box-sizing: border-box;
-    }
-    .summary-box {
-      background: red;
-      padding: 15px;
-      border-left: 4px solid #2563eb;
-      margin-bottom: 20px;
-      font-size: 14px;
-    }
-    .summary-box p {
-      margin: 6px 0;
-      display: flex;
-      justify-content: space-between;
-    }
-    .notice {
-      background: red;
-      border: 1px solid #fde047;
-      padding: 12px;
-      border-radius: 4px;
-      font-size: 13px;
-      margin-bottom: 20px;
-    }
-    .submit-btn {
-      width: 100%;
-      padding: 12px;
-      background: #16a34a;
-      color: yellow;
-      border: none;
-      border-radius: 4px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .submit-btn:hover {
-      background: #15803d;
-    }
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+body { background: #2a0a4a; background: linear-gradient(180deg, #1a0533 0%, #3b0a6d 100%); min-height: 100vh; padding: 16px 12px 30px; }
+.card { max-width: 430px; margin: 0 auto; background: #fff; border-radius: 24px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.4); }
+.header { background: linear-gradient(135deg, red 0%, yellow 45%, green 100%); padding: 32px 20px 22px; text-align: center; color: #fff; }
+.header h1 { font-size: 32px; line-height: 1.1; font-weight: 800; }
+.header p { font-size: 15px; opacity: 0.95; margin-top: 8px; line-height: 1.4; }
+.badge { display: inline-block; margin-top: 16px; background: rgba(0,0,0,0.25); padding: 7px 16px; border-radius: 20px; font-size: 13px; font-weight: 700; color: #5eead4; }
+.dot { display: inline-block; width: 9px; height: 9px; background: #34d399; border-radius: 50%; margin-right: 6px; }
+.body { padding: 20px 18px; background: #f8f5ff; }
+label { font-weight: 700; color: #1f2937; font-size: 15px; display: block; margin-bottom: 10px; }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.chips button { background: #fff; border: 1.5px solid #e9d5ff; color: #7c3aed; padding: 8px 12px; border-radius: 10px; font-weight: 700; font-size: 13px; cursor: pointer; }
+.chips button.active { background: #7c3aed; color: #fff; border-color: #7c3aed; }
+.input-wrap { display: flex; align-items: center; background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 0 14px; }
+.input-wrap span { font-weight: 800; color: #9ca3af; font-size: 18px; }
+.input-wrap input { border: none; outline: none; width: 100%; padding: 14px 10px; font-size: 17px; font-weight: 600; }
+.hint { font-size: 13px; color: #9ca3af; margin-top: 8px; line-height: 1.4; }
+select, .input-nama { width: 100%; padding: 14px; border: 1px solid #eee; border-radius: 12px; background: #fff; font-size: 15px; font-weight: 600; margin-top: 6px; outline: none; }
+.result { background: #fff; border-radius: 14px; padding: 18px; margin-top: 18px; }
+.row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 14px; color: #374151; }
+.row b { color: #7c3aed; }
+.row.total { font-size: 16px; font-weight: 800; color: #111; border-top: 1px dashed #eee; margin-top: 8px; padding-top: 12px; }
+.row.total b { font-size: 18px; }
+.warning { background: #fef3c7; border-radius: 12px; padding: 14px; margin-top: 16px; display: flex; gap: 10px; font-size: 13px; line-height: 1.5; color: #92400e; }
+.btn-wa { display: block; width: 100%; background: #25D366; color: #fff; border: none; padding: 16px; border-radius: 14px; font-size: 16px; font-weight: 800; margin-top: 18px; cursor: pointer; }
+.btn-wa:active { transform: scale(0.98); }
 </style>
 </head>
 <body>
-
-<div class="header">
-  <h1>Dapin By A.Z</h1>
-  <p>Layanan Pengajuan Pinjaman Cepat, Aman & Terpercaya</p>
-  <span class="badge">🟢 Admin Online (Buka s/d 22:00)</span>
-  <p></p>
-  <p></p>
-  <form id="loanForm">
-    <div class="form-group">
-      <label>Nominal Pinjaman (Rp)</label>
-      <div class="quick-buttons">
-        <button type="button" onclick="setAmount(200000)">200rb</button>
-        <button type="button" onclick="setAmount(500000)">500rb</button>
-        <button type="button" onclick="setAmount(1000000)">1 Juta</button>
-        <button type="button" onclick="setAmount(1500000)">1,5 Juta</button>
-        <button type="button" onclick="setAmount(2000000)">2 Juta</button>
-      </div>
-      <input type="number" id="amount" placeholder="Rp Contoh: 500000" min="100000" required oninput="calculateLoan()">
-    </div>
-
-    <div class="form-group">
-      <label for="tenor">Pilih Tenor (Durasi)</label>
-      <select id="tenor" required onchange="calculateLoan()">
-        <option value="">-- Pilih Tenor Pinjaman --</option>
-        <option value="50">7 hari (bunga 25%)</option>
-        <option value="70">10 hari (bunga 35%)</option>
-        <option value="100">14 hari (bunga 50%)</option>
-      </select>
-    </div>
-
-    <div class="summary-box">
-      <p><span>Estimasi Bunga:</span> <strong id="interestDisplay">Rp 0</strong></p>
-      <p><span>Biaya Admin/Materai:</span> <strong>Rp 12.000</strong></p>
-      <p><span>Total Harus Dibayar:</span> <strong id="totalDisplay">Rp 0</strong></p>
-      <p><span>Estimasi Jatuh Tempo:</span> <strong id="dueDateDisplay">-</strong></p>
-    </div>
-
-    <div class="notice">
-      <strong>⚠️ Perhatian Penting:</strong><br>
-      Keterlambatan pelunasan melewati tanggal jatuh tempo akan dikenakan denda sesuai ketentuan yang berlaku. Harap pinjam secara bijak.
-    </div>
-
-    <h3>1. Data Diri Pemohon</h3>
-    <div class="form-group">
-      <label for="fullName">Nama Lengkap (Sesuai KTP)</label>
-      <input type="text" id="fullName" placeholder="Nama lengkap Anda" required>
-    </div>
-    <div class="form-group">
-      <label for="phone">No. Telepon / WhatsApp Aktif</label>
-      <input type="tel" id="phone" placeholder="Contoh: 628123456789" pattern="[0-9]+" required>
-    </div>
-    <div class="form-group">
-      <label for="nik">Nomor KTP / NIK (16 Digit)</label>
-      <input type="text" id="nik" placeholder="16 digit nomor KTP" maxlength="16" pattern="[0-9]{16}" required>
-    </div>
-    <div class="form-group">
-      <label for="job">Pekerjaan</label>
-      <input type="text" id="job" placeholder="Contoh: Karyawan Swasta / Wirausaha" required>
-    </div>
-    <div class="form-group">
-      <label for="address">Alamat Domisili Sekarang</label>
-      <textarea id="address" rows="2" placeholder="Nama jalan, RT/RW, Kecamatan, Kota" required></textarea>
-    </div>
-
-    <h3>2. Tujuan Rekening Pencairan</h3>
-    <div class="form-group">
-      <label for="bank">Pilih Bank / E-Wallet</label>
-      <select id="bank" required>
-        <option value="">-- Pilih Bank / E-Wallet --</option>
-        <option value="BCA">BCA</option>
-        <option value="BRI">BRI</option>
-        <option value="BNI">BNI</option>
-        <option value="Mandiri">Mandiri</option>
-        <option value="GoPay">GoPay</option>
-        <option value="OVO">OVO</option>
-        <option value="DANA">DANA</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="accountNumber">Nomor Rekening / No. Akun</label>
-      <input type="text" id="accountNumber" placeholder="Masukkan nomor rekening/akun" pattern="[0-9]+" required>
-    </div>
-
-    <h3>3. Kontak Darurat</h3>
-    <div class="form-group">
-      <label for="emergencyName">Nama Kontak Darurat</label>
-      <input type="text" id="emergencyName" placeholder="Nama kerabat/keluarga" required>
-    </div>
-    <div class="form-group">
-      <label for="emergencyRelation">Hubungan</label>
-      <input type="text" id="emergencyRelation" placeholder="Contoh: Orang Tua / Saudara / Pasangan" required>
-    </div>
-    <div class="form-group">
-      <label for="emergencyPhone">No. HP Kontak Darurat</label>
-      <input type="tel" id="emergencyPhone" placeholder="Contoh: 08987654321" pattern="[0-9]+" required>
-    </div>
-
-    <button<a href="https://wa.me/6289501372683?text=Halo%20min%20saya%20ingin%20mengajukan%20pinjaman" target="_blank" style="display:block; background:#22c55e; color:yellow; text-align:center; padding:15px; border-radius:12px; font-weight:bold; text-decoration:none; font-size:18px;">
-Kirim Pengajuan
-</a></button>
-  </form>
-</div>
-
-<script>
-  function setAmount(val) {
-    document.getElementById('amount').value = val;
-    calculateLoan();
-  }
-
-  function formatRupiah(num) {
-    return 'Rp ' + num.toLocaleString('id-ID');
-  }
-
-  function calculateLoan() {
-    const amount = parseFloat(document.getElementById('amount').value) || 0;
-    const tenor = parseInt(document.getElementById('tenor').value) || 0;
-    const adminFee = amount > 0 ? 12000 : 0;
+<div class="card">
+  <div class="header">
+    <h1>Dapin By A.Z</h1>
+    <p>Layanan Pengajuan Pinjaman Cepat, Aman & Terpercaya</p>
+    <div class="badge"><span class="dot"></span> Admin Online (Buka s/d 22:00)</div>
+  </div>
+  <div class="body">
     
-    // Simulasi bunga 0.05% per hari
-    const interest = Math.round(amount * 0.005 * tenor);
-    const total = amount + interest + adminFee;
+    <!-- 1. DATA DIRI -->
+<p style="color:#7c3aed;font-weight:800;font-size:13px;letter-spacing:1px;margin:10px 0;">1. DATA DIRI PEMINJAM</p>
 
-    document.getElementById('interestDisplay').innerText = formatRupiah(interest);
-    document.getElementById('totalDisplay').innerText = amount > 0 && tenor > 0 ? formatRupiah(total) : 'Rp 0';
+<label>Nama Lengkap (Sesuai KTP)</label>
+<input class="input-nama" id="nama" placeholder="Nama lengkap Anda">
 
-    if (tenor > 0) {
-      const dueDate = new Date();
-      dueDate.setDate(dueDate.getDate() + tenor);
-      document.getElementById('dueDateDisplay').innerText = dueDate.toLocaleDateString('id-ID', {
-        day: 'numeric', month: 'long', year: 'numeric'
-      });
-    } else {
-      document.getElementById('dueDateDisplay').innerText = '-';
-    }
+<br><br>
+<label>No. WhatsApp Aktif (Wajib Angka)</label>
+<input class="input-nama" id="wa" type="tel" placeholder="Contoh: 628123456789">
+
+<br><br>
+<label>Nomor KTP / NIK (Wajib Angka)</label>
+<input class="input-nama" id="ktp" type="tel" maxlength="16" placeholder="16 digit nomor KTP">
+
+<br><br>
+<label>Pekerjaan</label>
+<input class="input-nama" id="kerja" placeholder="Contoh: Karyawan Swasta / Wirausaha">
+
+<br><br>
+<label>Alamat Domisili Sekarang</label>
+<textarea class="input-nama" id="alamat" rows="2" placeholder="Nama jalan, RT/RW, Kecamatan, Kota" style="resize:none;"></textarea>
+
+<br>
+<!-- 2. REKENING -->
+<p style="color:#7c3aed;font-weight:800;font-size:13px;letter-spacing:1px;margin:18px 0 10px;">2. TUJUAN REKENING PENCAIRAN</p>
+
+<label>Pilih Bank / E-Wallet</label>
+<select id="bank">
+  <option value="">-- Pilih Bank / E-Wallet --</option>
+  <option>BCA</option><option>BRI</option>
+  <option>BNI</option><option>Mandiri</option>
+  <option>SeaBank</option><option>Jenius</option>
+  <option>DANA</option><option>OVO</option>
+  <option>GoPay</option><option>ShopeePay</option>
+</select>
+
+<br><br>
+<label>Nomor Rekening / No. Akun (Wajib Angka)</label>
+<input class="input-nama" id="norek" type="tel" placeholder="Masukkan nomor rekening/akun">
+
+<br><br>
+<!-- 3. KONTAK DARURAT -->
+<p style="color:#7c3aed;font-weight:800;font-size:13px;letter-spacing:1px;margin:18px 0 10px;">3. KONTAK DARURAT (KELUARGA/KERABAT)</p>
+
+<label>Nama Kontak Darurat</label>
+<input class="input-nama" id="daruratNama" placeholder="Nama keluarga / kerabat">
+
+<br><br>
+<label>No. WA Kontak Darurat</label>
+<input class="input-nama" id="daruratWa" type="tel" placeholder="Contoh: 62812xxxx">
+<br><br>
+    <label>Nominal Pinjaman (Rp)</label>
+    <div class="chips">
+      <button onclick="setNominal(200000,this)">200rb</button>
+      <button onclick="setNominal(500000,this)">500rb</button>
+      <button onclick="setNominal(1000000,this)">1 Juta</button>
+      <button onclick="setNominal(1500000,this)">1,5 Juta</button>
+      <button onclick="setNominal(2000000,this)">2 Juta</button>
+    </div>
+    <div class="input-wrap"><span>Rp</span><input id="nominal" type="number" placeholder="Contoh: 500.000" oninput="hitung()"></div>
+    <p class="hint">Pilih tombol cepat di atas atau ketik nominal manual.</p>
+    <br>
+    <label>Pilih Tenor (Durasi)</label>
+    <select id="tenor" onchange="hitung()">
+  <option value="">-- Pilih Tenor Pinjaman --</option>
+  <option value="7">7 Hari - Bunga 25%</option>
+  <option value="10">10 Hari - Bunga 30%</option>
+  <option value="14">14 Hari - Bunga 35%</option>
+</select>
+    <div class="result">
+      <div class="row"><span>Estimasi Bunga:</span><b id="bunga">Rp 0</b></div>
+      <div class="row"><span>Biaya Admin/Materai:</span><b>Rp 12.000</b></div>
+      <div class="row total"><span>Total Harus Dibayar:</span><b id="total">Rp 0</b></div>
+      <div class="row" style="margin-top:8px; color:#6b7280;"><span>Estimasi Jatuh Tempo:</span><span id="tempo">-</span></div>
+    </div>
+    <div class="warning">⚠️ <span><b>Perhatian Penting:</b><br>Keterlambatan pelunasan melewati jatuh tempo akan dikenakan denda. Pastikan data yang diisi benar.</span></div>
+    <label style="display:flex; gap:8px; align-items:flex-start; font-size:14px; margin:12px 0;">
+  <input type="checkbox" id="setuju" required style="margin-top:3px; width:18px; height:18px;">
+  <span>Saya Setuju dengan Syarat & Ketentuan Dapin by A.Z</span>
+</label>
+    <button class="btn-wa" onclick="kirimWA()">Kirim Pengajuan via WhatsApp</button>
+  </div>
+</div>
+<script>
+function formatRp(n){ return 'Rp ' + n.toLocaleString('id-ID'); }
+function setNominal(n, el){
+  document.getElementById('nominal').value = n;
+  document.querySelectorAll('.chips button').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active'); hitung();
+}
+function hitung(){
+  let nominal = parseInt(document.getElementById('nominal').value) || 0;
+  let tenor = parseInt(document.getElementById('tenor').value) || 0;
+  let persen = tenor==7?0.25: tenor==10?0.35: tenor==14?0.50:0;
+  let bunga = nominal * persen;
+  let total = nominal + bunga + (nominal>0?12000:0);
+  document.getElementById('bunga').innerText = formatRp(bunga);
+  document.getElementById('total').innerText = nominal>0?formatRp(total):'Rp 0';
+  if(tenor>0){
+    let t = new Date(); t.setDate(t.getDate()+tenor);
+    document.getElementById('tempo').innerText = t.toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
   }
-
-  document.getElementById('loanForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    alert('Simulasi pengajuan berhasil divalidasi!');
-  });
+}
+function kirimWA(){
+ if(!document.getElementById('setuju').checked){
+  alert('Mohon centang dulu "Saya Setuju dengan Syarat & Ketentuan" ya ka!');
+  return;
+}
+  let nama = document.getElementById('nama').value;
+  let wa = document.getElementById('wa').value;
+  let ktp = document.getElementById('ktp').value;
+  let kerja = document.getElementById('kerja').value;
+  let alamat = document.getElementById('alamat').value;
+  let bank = document.getElementById('bank').value;
+  let norek = document.getElementById('norek').value;
+  let dNama = document.getElementById('daruratNama').value;
+  let dWa = document.getElementById('daruratWa').value;
+  let nominal = document.getElementById('nominal').value;
+  let tenor = document.getElementById('tenor').value;
+  if(!nama || !wa || !ktp || !nominal || !tenor || !bank || !norek){ alert('Lengkapi dulu ya ka! Nama, WA, KTP, Bank, No Rekening, Nominal & Tenor wajib diisi'); return; }
+  let bunga = document.getElementById('bunga').innerText;
+  let total = document.getElementById('total').innerText;
+  let tempo = document.getElementById('tempo').innerText;
+  let pesan = `Halo Admin by A.Z, saya mau mengajukan pinjaman.%0A%0A*1. DATA DIRI*%0ANama: ${nama}%0AWA: ${wa}%0AKTP: ${ktp}%0APekerjaan: ${kerja}%0AAlamat: ${alamat}%0A%0A*2. REKENING*%0ABank: ${bank}%0ANo Rek: ${norek}%0A%0A*3. KONTAK DARURAT*%0ANama: ${dNama}%0AWA: ${dWa}%0A%0A*PINJAMAN*%0ANominal: Rp ${parseInt(nominal).toLocaleString('id-ID')}%0ATenor: ${tenor} Hari%0ABunga: ${bunga}%0ATotal Bayar: ${total}%0AJatuh Tempo: ${tempo}`;
+  window.open(`https://api.whatsapp.com/send?phone=6289501372683&text=${pesan}`, '_blank');
+}
 </script>
-
+</script>
 </body>
 </html>
