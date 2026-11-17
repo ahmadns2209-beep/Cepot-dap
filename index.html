@@ -132,9 +132,9 @@ input,select{width:100%; padding:13px; margin:8px 0; border:1px solid #ddd; bord
       <label for="tenor">Pilih Tenor (Durasi)</label>
       <select id="tenor" required onchange="calculateLoan()">
         <option value="">-- Pilih Tenor Pinjaman --</option>
-        <option value="70">7 Hari</option>
-        <option value="100">14 Hari</option>
-        <option value="150">30 Hari</option>
+        <option value="50">7 hari (bunga 25%)</option>
+        <option value="70">10 hari (bunga 35%)</option>
+        <option value="100">14 hari (bunga 50%)</option>
       </select>
     </div>
 
@@ -226,8 +226,8 @@ Kirim Pengajuan
     const tenor = parseInt(document.getElementById('tenor').value) || 0;
     const adminFee = amount > 0 ? 12000 : 0;
     
-    // Simulasi bunga 0.3% per hari
-    const interest = Math.round(amount * 0.003 * tenor);
+    // Simulasi bunga 0.05% per hari
+    const interest = Math.round(amount * 0.005 * tenor);
     const total = amount + interest + adminFee;
 
     document.getElementById('interestDisplay').innerText = formatRupiah(interest);
