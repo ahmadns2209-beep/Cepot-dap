@@ -95,6 +95,15 @@ select, .input-nama { width: 100%; padding: 14px; border: 1px solid #eee; border
 <input class="input-nama" id="daruratNama" placeholder="Nama keluarga / kerabat">
 
 <br><br>
+<label>Hubungan</label>
+<select id="daruratHub">
+  <option value="">-- Pilih Hubungan --</option>
+  <option>Suami</option><option>Istri</option>
+  <option>Orang Tua</option><option>Saudara</option>
+  <option>Teman</option><option>Kerabat Lain</option>
+</select>
+
+<br><br>
 <label>No. WA Kontak Darurat</label>
 <input class="input-nama" id="daruratWa" type="tel" placeholder="Contoh: 62812xxxx">
 <br><br>
@@ -122,7 +131,7 @@ select, .input-nama { width: 100%; padding: 14px; border: 1px solid #eee; border
       <div class="row total"><span>Total Harus Dibayar:</span><b id="total">Rp 0</b></div>
       <div class="row" style="margin-top:8px; color:#6b7280;"><span>Estimasi Jatuh Tempo:</span><span id="tempo">-</span></div>
     </div>
-    <div class="warning">⚠️ <span><b>Perhatian Penting:</b><br>Keterlambatan pelunasan melewati jatuh tempo akan dikenakan denda. Pastikan data yang diisi benar.</span></div>
+    <div class="warning">⚠️ <span><b>Perhatian Penting:</b><br>Keterlambatan pelunasan melewati jatuh tempo akan dikenakan denda harian sesuai ketentuan yang berlaku.Harap Pinjam dengan bijak!!!.</span></div>
     <label style="display:flex; gap:8px; align-items:flex-start; font-size:14px; margin:12px 0;">
   <input type="checkbox" id="setuju" required style="margin-top:3px; width:18px; height:18px;">
   <span>Saya Setuju dengan Syarat & Ketentuan Dapin by A.Z</span>
@@ -151,29 +160,38 @@ function hitung(){
   }
 }
 function kirimWA(){
- if(!document.getElementById('setuju').checked){
-  alert('Mohon centang dulu "Saya Setuju dengan Syarat & Ketentuan" ya ka!');
-  return;
-}
-  let nama = document.getElementById('nama').value;
-  let wa = document.getElementById('wa').value;
-  let ktp = document.getElementById('ktp').value;
-  let kerja = document.getElementById('kerja').value;
-  let alamat = document.getElementById('alamat').value;
+  if(!document.getElementById('setuju').checked){
+    alert('Mohon centang dulu "Saya Setuju dengan Syarat & Ketentuan" ya ka!');
+    return;
+  }
+  let nama = document.getElementById('nama').value.trim();
+  let wa = document.getElementById('wa').value.trim();
+  let ktp = document.getElementById('ktp').value.trim();
+  let kerja = document.getElementById('kerja').value.trim();
+  let alamat = document.getElementById('alamat').value.trim();
   let bank = document.getElementById('bank').value;
-  let norek = document.getElementById('norek').value;
-  let dNama = document.getElementById('daruratNama').value;
-  let dWa = document.getElementById('daruratWa').value;
+  let norek = document.getElementById('norek').value.trim();
+  let dNama = document.getElementById('daruratNama').value.trim();
+  let dHub = document.getElementById('daruratHub').value;
+  let dWa = document.getElementById('daruratWa').value.trim();
   let nominal = document.getElementById('nominal').value;
   let tenor = document.getElementById('tenor').value;
   if(!nama || !wa || !ktp || !nominal || !tenor || !bank || !norek){ alert('Lengkapi dulu ya ka! Nama, WA, KTP, Bank, No Rekening, Nominal & Tenor wajib diisi'); return; }
   let bunga = document.getElementById('bunga').innerText;
   let total = document.getElementById('total').innerText;
   let tempo = document.getElementById('tempo').innerText;
-  let pesan = `Halo Admin by A.Z, saya mau mengajukan pinjaman.%0A%0A*1. DATA DIRI*%0ANama: ${nama}%0AWA: ${wa}%0AKTP: ${ktp}%0APekerjaan: ${kerja}%0AAlamat: ${alamat}%0A%0A*2. REKENING*%0ABank: ${bank}%0ANo Rek: ${norek}%0A%0A*3. KONTAK DARURAT*%0ANama: ${dNama}%0AWA: ${dWa}%0A%0A*PINJAMAN*%0ANominal: Rp ${parseInt(nominal).toLocaleString('id-ID')}%0ATenor: ${tenor} Hari%0ABunga: ${bunga}%0ATotal Bayar: ${total}%0AJatuh Tempo: ${tempo}`;
-  window.open(`https://api.whatsapp.com/send?phone=6289501372683&text=${pesan}`, '_blank');
+  let tgl = new Date().toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
+  let persenText = tenor==7?'25':tenor==10?'35':tenor==14?'50':'0';
+  let pesan = "Halo Admin Dapin by A.Z,\n\nSaya mau mengajukan pinjaman.\n\n*TANGGAL PENGAJUAN*\n• Tanggal Pengajuan: " + tgl + "\n• Estimasi Jatuh Tempo: " + tempo + "\n\n*RINCIAN PINJAMAN*\n• Nominal Pinjaman: " + formatRp(parseInt(nominal)) + "\n• Tenor: " + tenor + " Hari (Bunga " + persenText + "%)\n• Estimasi Bunga: " + bunga + "\n• Biaya Admin/Materai: Rp 12.000\n• *TOTAL HARUS DIBAYAR: " + total + "*\n\n*1. DATA DIRI PEMINJAM*\n• Nama: " + nama + "\n• No WhatsApp: " + wa + "\n• NIK: " + ktp + "\n• Pekerjaan: " + kerja + "\n• Alamat: " + alamat + "\n\n*2. TUJUAN REKENING PENCAIRAN*\n• Bank / E-Wallet: " + bank + "\n• No Rekening / Akun: " + norek + "\n\n*3. KONTAK DARURAT*\n• Nama: " + dNama + "\n• Hubungan: " + dHub + "\n• No HP: " + dWa + "\n\n_Status Persetujuan: Setuju dengan Syarat & Ketentuan Dapin by A.Z_";
+  let url = "https://api.whatsapp.com/send?phone=6289501372683&text=" + encodeURIComponent(pesan);
+let a = document.createElement('a');
+a.href = url;
+a.target = '_blank';
+a.rel = 'noopener';
+document.body.appendChild(a);
+a.click();
+a.remove();
 }
-</script>
 </script>
 </body>
 </html>
